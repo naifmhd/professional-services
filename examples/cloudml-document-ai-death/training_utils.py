@@ -492,7 +492,8 @@ def run_ocr(project_id, output_directory, region, temp_directory, service_acct):
             logger.info(f"Processing OCR for {blob.name}.")
 
             image.source.image_uri = f"gs://{project_id}-vcm/{blob.name}"
-            response = vision_client.text_detection(image=image)
+            response = vision_client.text_detection(
+                image=image, image_context={"language_hints": ["dv"]})
 
             # TODO Check if entity Extraction needs everything separated out
             # First text annotation is full text
