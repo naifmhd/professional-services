@@ -503,7 +503,7 @@ def run_ocr(project_id, output_directory, region, temp_directory, service_acct):
                 temp_directory, os.path.basename(blob.name).replace(".png", ".txt"))
 
             with open(temp_txt, "w") as f:
-                f.write(text)
+                f.write(text.encode('utf8'))
                 f.close()
 
     subprocess.run(
