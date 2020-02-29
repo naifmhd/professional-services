@@ -207,7 +207,7 @@ def convert_jpegs(main_project_id,
     # Prepare PDFs for Image Classification/Object Detection
     logger.info("Downloading JPGs for processing.")
     subprocess.run(
-        f"gsutil -m cp gs://{input_bucket_name}/*.pdf {temp_directory}", shell=True)
+        f"gsutil -m cp gs://{input_bucket_name}/*.jpg {temp_directory}", shell=True)
 
     for f in os.scandir(temp_directory):
         if f.name.endswith(".jpg"):
