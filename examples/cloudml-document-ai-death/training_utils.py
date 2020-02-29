@@ -186,12 +186,12 @@ def convert_pdfs(main_project_id,
             service_acct=service_acct)
 
 
-def convert_png(main_project_id,
-                input_bucket_name,
-                region,
-                service_acct,
-                output_directory="patent_demo_data",
-                temp_directory="./tmp/google"):
+def convert_jpegs(main_project_id,
+                  input_bucket_name,
+                  region,
+                  service_acct,
+                  output_directory="patent_demo_data",
+                  temp_directory="./tmp/google"):
     """Converts all pdfs in a bucket to png and txt using OCR.
 
     Args:
@@ -205,17 +205,17 @@ def convert_png(main_project_id,
         os.makedirs(temp_directory)
 
     # Prepare PDFs for Image Classification/Object Detection
-    # logger.info("Downloading PNG for processing.")
-    # subprocess.run(
-    #     f"gsutil -m cp gs://{input_bucket_name}/*.png {temp_directory}", shell=True)
+    logger.info("Downloading JPGs for processing.")
+    subprocess.run(
+        f"gsutil -m cp gs://{input_bucket_name}/*.pdf {temp_directory}", shell=True)
 
-    # for f in os.scandir(temp_directory):
-    #     if f.name.endswith(".pdf"):
-    #         logger.info(f"Converting {f.name} to PNG")
-    #         temp_png = f.path.replace(".pdf", ".png")
-    #         with Image(filename=f.path, resolution=300) as pdf:
-    #             with pdf.convert("png") as png:
-    #                 png.save(filename=temp_png)
+    for f in os.scandir(temp_directory):
+        if f.name.endswith(".jpg"):
+            logger.info(f"Converting {f.name} to PNG")
+            temp_png = f.path.replace(".jpg", ".png")
+            with Image(filename=f.path, resolution=300) as pdf:
+                with pdf.convert("png") as png:
+                    png.save(filename=temp_png)
 
     logger.info(f"Uploading png file to GCS.")
     output_bucket_name = main_project_id + "-vcm"
@@ -226,7 +226,7 @@ def convert_png(main_project_id,
         shell=True)
 
     subprocess.run(
-        f"gsutil -m cp gs://{input_bucket_name}/*.png gs://{output_bucket_name}/{output_directory}/png",
+        f"gsutil -m cp {temp_directory}/*.png gs://{output_bucket_name}/{output_directory}/png",
         shell=True)
 
     # OCR Processing to obtain text files

@@ -18,7 +18,7 @@ import yaml
 
 config = yaml.safe_load(open("config.yaml", "r"))
 
-training_utils.convert_png(
+training_utils.convert_jpegs(
     main_project_id=config["pipeline_project"]["project_id"],
     input_bucket_name=config["pdp_project"]["bucket_name"],
     region=config["pipeline_project"]["region"],
