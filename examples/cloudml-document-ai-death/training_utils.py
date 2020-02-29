@@ -498,11 +498,11 @@ def run_ocr(project_id, output_directory, region, temp_directory, service_acct):
             # TODO Check if entity Extraction needs everything separated out
             # First text annotation is full text
             text = response.text_annotations[0].description
-            logger.info(text)
+            logger.info(response.text_annotations[0])
             temp_txt = os.path.join(
                 temp_directory, os.path.basename(blob.name).replace(".png", ".txt"))
 
-            with open(temp_txt, "w", encoding="utf-8") as f:
+            with open(temp_txt, "w", encoding="utf8") as f:
                 f.write(text)
                 f.close()
 
