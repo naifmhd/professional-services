@@ -18,8 +18,8 @@
 pipeline_project:
   project_id: "ml-naif" # TODO(user): Set to your Project ID.
   region: "us-central1" # Currently (Aug 2019) only "us-central1" supported.
-  demo_sample_data: # TODO(user): GCS location of sample patents to process for demo
-  demo_dataset_id: # TODO(user): BQ dataset to store information collected for demo
+  demo_sample_data: "gs://final_death_certificates" # TODO(user): GCS location of sample patents to process for demo
+  demo_dataset_id: "extracted_death_details" # TODO(user): BQ dataset to store information collected for demo
 
 # Parameters for creation of a service account with get_service_acct.sh.
 service_acct:
@@ -50,7 +50,7 @@ model_textclassifier:
   model_id: # 'TODO(user): replace with model id when training is complete
   demo_table_id: "subject_classification"
 model_ner:
-  model_id: # 'TODO(user): replace with model id when training is complete
+  model_id: "TEN6225219332188667904" # 'TODO(user): replace with model id when training is complete
   demo_table_id: "ner_results"
   fields_to_extract:
     - field_name: "gcs_path"
