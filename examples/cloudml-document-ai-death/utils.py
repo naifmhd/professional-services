@@ -93,8 +93,6 @@ def save_to_bq(bq_dataset, bq_table, rows_to_insert, service_account, _create_ta
         table = bq_client.get_table(table_ref)
     except:
         raise ValueError('Table {} does not exist.'.format(bq_table))
-    logger.info(table)
-    logger.info(rows_to_insert)
     load_job = bq_client.insert_rows(table, rows_to_insert)
 
 
