@@ -423,9 +423,6 @@ def entity_extraction(main_project_id,
         logger.info(txt_file)
         with open(txt_file, "r") as f:
             _text = f.read()
-            logger.info(_text)
-            logger.info(_index)
-            logger.info(df_dict[_index])
             jsonl = create_jsonl(_text, df_dict[_index])
             LIST_JSONL.append(jsonl)
 
@@ -566,6 +563,10 @@ def create_jsonl(pdf_text, value_dict):
 
         if isinstance(value_to_find, float) and math.isnan(value_to_find):
             continue
+
+        logger.info(field)
+        logger.info(value_to_find)
+        logger.info(LIST_FIELDS)
         match_fn = LIST_FIELDS[field]
         match = match_fn.find_match(pdf_text, value_to_find)
         if match:
