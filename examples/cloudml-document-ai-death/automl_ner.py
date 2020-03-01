@@ -121,11 +121,11 @@ def predict(main_project_id,
     storage_client = storage.Client.from_service_account_json(service_acct)
     bucket_name, path = utils.get_bucket_blob(input_txt_folder)
     bucket = storage_client.get_bucket(bucket_name)
-    logger.info(bucket_name)
-    logger.info(path)
-    logger.info(bucket)
+
     list_results = []
     for file in bucket.list_blobs(prefix=path):
+        logger.info(file)
+        logger.info(input_txt_folder)
         full_filename = os.path.join(
             input_txt_folder, os.path.basename(file.name))
         logger.info(full_filename)
