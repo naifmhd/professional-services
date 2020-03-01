@@ -16,14 +16,14 @@
 # The project the Document AI pipeline will be built and hosted in.
 # TODO(michaelsherman): Make sure no line is past 80 characters (per bash style)
 pipeline_project:
-  project_id: # TODO(user): Set to your Project ID.
+  project_id: "ml-naif" # TODO(user): Set to your Project ID.
   region: "us-central1" # Currently (Aug 2019) only "us-central1" supported.
   demo_sample_data: # TODO(user): GCS location of sample patents to process for demo
   demo_dataset_id: # TODO(user): BQ dataset to store information collected for demo
 
 # Parameters for creation of a service account with get_service_acct.sh.
 service_acct:
-  creator_user_id: # TODO(user): Set to your GCP login email.
+  creator_user_id: "naif.mohamed@pension.gov.mv" # TODO(user): Set to your GCP login email.
   acct_name: "patent-service-acct"
   acct_description: "Service-account-for-patent-demo"
   acct_display_name: "Patent-Demo-Service-Account"
