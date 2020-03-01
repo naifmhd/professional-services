@@ -420,6 +420,7 @@ def entity_extraction(main_project_id,
         txt_file = df_dict[_index].pop("gcs_path").replace(".jpg", ".txt")
         txt_file = txt_file.replace(f"gs://{input_bucket_name}/",
                                     f"{temp_directory}/")
+        logger.info(txt_file)
         with open(txt_file, "r") as f:
             _text = f.read()
             jsonl = create_jsonl(_text, df_dict[_index])
