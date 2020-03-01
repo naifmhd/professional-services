@@ -417,7 +417,6 @@ def entity_extraction(main_project_id,
 
     LIST_JSONL = []
     for _index in range(0, len(df)):
-        logger.info(df_dict[_index])
         txt_file = df_dict[_index].pop("gcs_path").replace(".jpg", ".txt")
         txt_file = txt_file.replace(f"gs://{input_bucket_name}/",
                                     f"{temp_directory}/")
@@ -499,7 +498,6 @@ def run_ocr(project_id, output_directory, region, temp_directory, service_acct):
             # TODO Check if entity Extraction needs everything separated out
             # First text annotation is full text
             text = response.text_annotations[0].description
-            logger.info(response.text_annotations[0].description)
             temp_txt = os.path.join(
                 temp_directory, os.path.basename(blob.name).replace(".png", ".txt"))
 
