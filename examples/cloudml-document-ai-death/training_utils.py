@@ -583,8 +583,9 @@ def create_jsonl(pdf_text, value_dict):
 
 LIST_FIELDS = {
     # "applicant_line_1": MatchTypo(),
+    # "address": MatchClassification(pattern_keyword_before=r"Int\.? C[I|L|1]"),
     "name": GeneralMatch(),
-    "address": MatchClassification(pattern_keyword_before=r"Int\.? C[I|L|1]"),
+    "address": GeneralMatch(),
     "age": MatchTypo(tolerance=1),
     "location": MatchTypo(),
     "time": GeneralMatch(),
