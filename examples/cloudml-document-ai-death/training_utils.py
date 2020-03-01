@@ -424,6 +424,8 @@ def entity_extraction(main_project_id,
         with open(txt_file, "r") as f:
             _text = f.read()
             logger.info(_text)
+            logger.info(_index)
+            logger.info(df_dict[_index])
             jsonl = create_jsonl(_text, df_dict[_index])
             LIST_JSONL.append(jsonl)
 
