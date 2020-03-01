@@ -33,8 +33,8 @@ service_acct:
 #   be as independent as possible.
 # TODO(michaelsherman): Fields should be specified for all models, like NER is.
 pdp_project:
-  project_id: "bigquery-public-data"
-  dataset_id: "labeled_patents"
+  project_id: "ml-naif"
+  dataset_id: "labeled_certificates"
   bucket_name: "death-certificates"
   image_table_id: "extracted_data"
   objdetect_table_id: "figures"

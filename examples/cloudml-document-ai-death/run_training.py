@@ -62,13 +62,13 @@ training_utils.convert_jpegs(
 #     input_bucket_name=config["pdp_project"]["bucket_name"],
 #     region=config["pipeline_project"]["region"])
 
-# # Create AutoML Natural Entity Recognition model
-# training_utils.entity_extraction(
-#     main_project_id=config["pipeline_project"]["project_id"],
-#     data_project_id=config["pdp_project"]["project_id"],
-#     dataset_id=config["pdp_project"]["dataset_id"],
-#     table_id=config["pdp_project"]["ner_table_id"],
-#     service_acct=config["service_acct"]["key_path"],
-#     input_bucket_name=config["pdp_project"]["bucket_name"],
-#     region=config["pipeline_project"]["region"],
-#     config=config)
+# Create AutoML Natural Entity Recognition model
+training_utils.entity_extraction(
+    main_project_id=config["pipeline_project"]["project_id"],
+    data_project_id=config["pdp_project"]["project_id"],
+    dataset_id=config["pdp_project"]["dataset_id"],
+    table_id=config["pdp_project"]["ner_table_id"],
+    service_acct=config["service_acct"]["key_path"],
+    input_bucket_name=config["pdp_project"]["bucket_name"],
+    region=config["pipeline_project"]["region"],
+    config=config)

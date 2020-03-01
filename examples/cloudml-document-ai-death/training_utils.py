@@ -417,7 +417,7 @@ def entity_extraction(main_project_id,
 
     LIST_JSONL = []
     for _index in range(0, len(df)):
-        txt_file = df_dict[_index].pop("gcs_path").replace(".pdf", ".txt")
+        txt_file = df_dict[_index].pop("gcs_path").replace(".jpg", ".txt")
         txt_file = txt_file.replace(f"gs://{input_bucket_name}/",
                                     f"{temp_directory}/")
         with open(txt_file, "r") as f:
