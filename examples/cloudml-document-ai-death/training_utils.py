@@ -564,9 +564,6 @@ def create_jsonl(pdf_text, value_dict):
         if isinstance(value_to_find, float) and math.isnan(value_to_find):
             continue
 
-        logger.info(field)
-        logger.info(value_to_find)
-        logger.info(LIST_FIELDS)
         match_fn = LIST_FIELDS[field]
         match = match_fn.find_match(pdf_text, value_to_find)
         if match:
@@ -585,15 +582,15 @@ def create_jsonl(pdf_text, value_dict):
 
 
 LIST_FIELDS = {
-    "applicant_line_1": MatchTypo(),
-    "application_number": GeneralMatch(),
-    "class_international": MatchClassification(pattern_keyword_before=r"Int\.? C[I|L|1]"),
-    "filing_date": MatchTypo(tolerance=1),
-    "inventor_line_1": MatchTypo(),
-    "number": GeneralMatch(),
-    "publication_date": GeneralMatch(),
-    "title_line_1": MatchTypo(),
-    "number": GeneralMatch()
+    # "applicant_line_1": MatchTypo(),
+    "name": GeneralMatch(),
+    "address": MatchClassification(pattern_keyword_before=r"Int\.? C[I|L|1]"),
+    "age": MatchTypo(tolerance=1),
+    "location": MatchTypo(),
+    "time": GeneralMatch(),
+    "death_date": GeneralMatch(),
+    "prayer_date": MatchTypo(),
+    "contact_number": GeneralMatch()
 }
 
 
