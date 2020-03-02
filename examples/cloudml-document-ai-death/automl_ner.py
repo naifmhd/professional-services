@@ -124,8 +124,8 @@ def predict(main_project_id,
 
     list_results = []
     logger.info('bucket')
-    logger.info(bucket)
-    logger.info(bucket.list_blobs(prefix=path))
+    logger.info(input_txt_folder)
+    logger.info(bucket_name)
     for file in bucket.list_blobs(prefix=path):
         logger.info(file)
         logger.info(input_txt_folder)
