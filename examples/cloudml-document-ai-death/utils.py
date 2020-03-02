@@ -85,6 +85,7 @@ def save_to_bq(bq_dataset, bq_table, rows_to_insert, service_account, _create_ta
         if not schema:
             raise ValueError('Schema is required when creating the table')
         table = create_table(bq_client, bq_dataset, bq_table, schema)
+        print(rows_to_insert)
         print('Table created')
 
     dataset_ref = bq_client.dataset(bq_dataset)
