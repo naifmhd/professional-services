@@ -123,6 +123,9 @@ def predict(main_project_id,
     bucket = storage_client.get_bucket(bucket_name)
 
     list_results = []
+    logger.info('bucket')
+    logger.info(bucket)
+    logger.info(bucket.list_blobs(prefix=path))
     for file in bucket.list_blobs(prefix=path):
         logger.info(file)
         logger.info(input_txt_folder)
