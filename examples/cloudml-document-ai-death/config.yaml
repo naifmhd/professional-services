@@ -33,9 +33,9 @@ service_acct:
 #   be as independent as possible.
 # TODO(michaelsherman): Fields should be specified for all models, like NER is.
 pdp_project:
-  project_id: "ml-naif"
+  project_id: "death-certificate"
   dataset_id: "labeled_certificates"
-  bucket_name: "death-certificates"
+  bucket_name: "sample-certificates"
   image_table_id: "extracted_data"
   objdetect_table_id: "figures"
   text_table_id: "invention_types"
