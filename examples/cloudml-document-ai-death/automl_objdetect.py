@@ -70,7 +70,7 @@ def detect_object(gcs_image_folder,
                 os.path.join('gs://', bucket_name, blob.name)))
             content = utils.sample_handler(
                 storage_client, bucket_name, blob.name)
-            name = 'projects/{}/locations/us-west1/models/{}'.format(
+            name = 'projects/{}/locations/us-central1/models/{}'.format(
                 main_project_id, model_id)
             payload = {'image': {'image_bytes': content}}
             params = {}

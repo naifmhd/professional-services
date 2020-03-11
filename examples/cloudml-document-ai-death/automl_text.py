@@ -25,7 +25,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def run_automl_text(content, project_id, model_id, service_account, compute_region='us-west1'):
+def run_automl_text(content, project_id, model_id, service_account, compute_region='us-central1'):
     """Runs AutoML prediction on 1 document."""
     prediction_client = automl_v1beta1.PredictionServiceClient.from_service_account_json(
         service_account)
