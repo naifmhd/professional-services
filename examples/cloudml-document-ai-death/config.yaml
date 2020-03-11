@@ -16,18 +16,18 @@
 # The project the Document AI pipeline will be built and hosted in.
 # TODO(michaelsherman): Make sure no line is past 80 characters (per bash style)
 pipeline_project:
-  project_id: "ml-naif" # TODO(user): Set to your Project ID.
-  region: "us-central1" # Currently (Aug 2019) only "us-central1" supported.
-  demo_sample_data: "gs://final_death_certificates" # TODO(user): GCS location of sample patents to process for demo
+  project_id: "death-certificate" # TODO(user): Set to your Project ID.
+  region: "us-west1 " # Currently (Aug 2019) only "us-central1" supported.
+  demo_sample_data: "gs://testing_death_certificates" # TODO(user): GCS location of sample patents to process for demo
   demo_dataset_id: "extracted_death_details" # TODO(user): BQ dataset to store information collected for demo
 
 # Parameters for creation of a service account with get_service_acct.sh.
 service_acct:
-  creator_user_id: "naif.mohamed@pension.gov.mv" # TODO(user): Set to your GCP login email.
-  acct_name: "patent-service-acct"
-  acct_description: "Service-account-for-patent-demo"
-  acct_display_name: "Patent-Demo-Service-Account"
-  key_path: "$HOME/keys/patent-demo-service-acct.json"
+  creator_user_id: "naifmhd@gmail.com" # TODO(user): Set to your GCP login email.
+  acct_name: "death-service-acct"
+  acct_description: "Service-account-for-death-demo"
+  acct_display_name: "Death-Demo-Service-Account"
+  key_path: "$HOME/keys/death-demo-service-acct.json"
 
 # TODO(michaelsherman): Each of these should just be a BQ proj.dataset.table, they should
 #   be as independent as possible.
