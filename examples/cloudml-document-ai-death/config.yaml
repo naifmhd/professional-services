@@ -17,7 +17,7 @@
 # TODO(michaelsherman): Make sure no line is past 80 characters (per bash style)
 pipeline_project:
   project_id: "death-certificate" # TODO(user): Set to your Project ID.
-  region: "us-west1 " # Currently (Aug 2019) only "us-central1" supported.
+  region: "us-west1" # Currently (Aug 2019) only "us-central1" supported.
   demo_sample_data: "gs://testing_death_certificates" # TODO(user): GCS location of sample patents to process for demo
   demo_dataset_id: "extracted_death_details" # TODO(user): BQ dataset to store information collected for demo
 

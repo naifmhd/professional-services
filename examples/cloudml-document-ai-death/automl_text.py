@@ -25,14 +25,16 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-def run_automl_text(content, project_id, model_id, service_account, compute_region='us-central1'):
+def run_automl_text(content, project_id, model_id, service_account, compute_region='us-west1'):
     """Runs AutoML prediction on 1 document."""
-    prediction_client = automl_v1beta1.PredictionServiceClient.from_service_account_json(service_account)
-    name = 'projects/{}/locations/{}/models/{}'.format(project_id, compute_region, model_id)
-    payload = {'text_snippet': {'content': content, 'mime_type': 'text/plain' }}
+    prediction_client = automl_v1beta1.PredictionServiceClient.from_service_account_json(
+        service_account)
+    name = 'projects/{}/locations/{}/models/{}'.format(
+        project_id, compute_region, model_id)
+    payload = {'text_snippet': {'content': content, 'mime_type': 'text/plain'}}
     params = {}
     response = prediction_client.predict(name, payload, params)
-    
+
     max_score = - 1.0
     argmax = None
     for result in response.payload:
@@ -40,7 +42,8 @@ def run_automl_text(content, project_id, model_id, service_account, compute_regi
             argmax = result.display_name
             max_score = result.classification.score
     if not argmax:
-        raise ValueError('Auto ML Text did not return any result. Check the API')
+        raise ValueError(
+            'Auto ML Text did not return any result. Check the API')
     return argmax, max_score
 
 
@@ -60,27 +63,30 @@ def predict(main_project_id,
     storage_client = storage.Client.from_service_account_json(service_acct)
     bucket_name, path = utils.get_bucket_blob(input_txt_folder)
     bucket = storage_client.get_bucket(bucket_name)
-    
+
     results = []
     for document_path in bucket.list_blobs(prefix=path):
-        logging.info('Extracting the subject for file: {}'.format(document_path.name))
-        document_abs_path = os.path.join('gs://', bucket_name, document_path.name)
+        logging.info('Extracting the subject for file: {}'.format(
+            document_path.name))
+        document_abs_path = os.path.join(
+            'gs://', bucket_name, document_path.name)
         content = utils.download_string(document_abs_path, service_acct).read()
-        subject, score = run_automl_text(content, main_project_id, model_id, service_acct, compute_region)
+        subject, score = run_automl_text(
+            content, main_project_id, model_id, service_acct, compute_region)
         logger.info(f"Predicted subject: {subject}.")
         logger.info(f"Predicted class score: {score}.")
-  
+
         results.append({
             'file': os.path.basename(document_abs_path.replace('.txt', '.pdf')),
             'subject': subject,
             'score': score
-            })
+        })
 
     schema = [
         bigquery.SchemaField('file', 'STRING', mode='NULLABLE'),
         bigquery.SchemaField('subject', 'STRING', mode='NULLABLE'),
         bigquery.SchemaField('score', 'FLOAT', mode='NULLABLE'),
-        ]
+    ]
     utils.save_to_bq(
         demo_dataset,
         demo_table,
