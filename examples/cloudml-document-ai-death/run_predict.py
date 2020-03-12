@@ -25,11 +25,11 @@ import yaml
 config = yaml.safe_load(open("config.yaml", "r"))
 
 # Convert sample pdfs to png and txt files
-jpg2png.convert_jpgs(
-    main_project_id=config["pipeline_project"]["project_id"],
-    demo_dataset=config["pipeline_project"]["demo_dataset_id"],
-    input_path=config["pipeline_project"]["demo_sample_data"],
-    service_acct=config["service_acct"]["key_path"])
+# jpg2png.convert_jpgs(
+#     main_project_id=config["pipeline_project"]["project_id"],
+#     demo_dataset=config["pipeline_project"]["demo_dataset_id"],
+#     input_path=config["pipeline_project"]["demo_sample_data"],
+#     service_acct=config["service_acct"]["key_path"])
 
 # # Call prediction with AutoML image classification model
 # automl_image.predict(
@@ -62,22 +62,22 @@ jpg2png.convert_jpgs(
 #     compute_region=config["pipeline_project"]["region"])
 
 # Call prediction with AutoML entity extraction model
-# automl_ner.predict(
-#     main_project_id=config["pipeline_project"]["project_id"],
-#     input_path=config["pipeline_project"]["demo_sample_data"],
-#     demo_dataset=config["pipeline_project"]["demo_dataset_id"],
-#     demo_table=config["model_ner"]["demo_table_id"],
-#     model_id=config["model_ner"]["model_id"],
-#     service_acct=config["service_acct"]["key_path"],
-#     compute_region=config["pipeline_project"]["region"],
-#     config=config)
+automl_ner.predict(
+    main_project_id=config["pipeline_project"]["project_id"],
+    input_path=config["pipeline_project"]["demo_sample_data"],
+    demo_dataset=config["pipeline_project"]["demo_dataset_id"],
+    demo_table=config["model_ner"]["demo_table_id"],
+    model_id=config["model_ner"]["model_id"],
+    service_acct=config["service_acct"]["key_path"],
+    compute_region=config["pipeline_project"]["region"],
+    config=config)
 
-# # Combine the results above into singel table
-# final_view.create(
-#     main_project_id=config["pipeline_project"]["project_id"],
-#     demo_dataset=config["pipeline_project"]["demo_dataset_id"],
-#     img_table=config["model_imgclassifier"]["demo_table_id"],
-#     objdet_table=config["model_objdetect"]["demo_table_id"],
-#     text_table=config["model_textclassifier"]["demo_table_id"],
-#     ner_table=config["model_ner"]["demo_table_id"],
-#     service_acct=config["service_acct"]["key_path"])
+# Combine the results above into singel table
+final_view.create(
+    main_project_id=config["pipeline_project"]["project_id"],
+    demo_dataset=config["pipeline_project"]["demo_dataset_id"],
+    img_table=config["model_imgclassifier"]["demo_table_id"],
+    objdet_table=config["model_objdetect"]["demo_table_id"],
+    text_table=config["model_textclassifier"]["demo_table_id"],
+    ner_table=config["model_ner"]["demo_table_id"],
+    service_acct=config["service_acct"]["key_path"])
