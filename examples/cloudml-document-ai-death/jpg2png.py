@@ -147,7 +147,6 @@ def convert_jpgs(main_project_id,
 
     folder_to_enumerate = input_path.replace(
         input_bucket_name + "/", "").replace("gs://", "")
-    logger.info(folder_to_enumerate)
     png_output_folder = f"gs://{input_bucket_name}/{demo_dataset}/png"
     txt_output_folder = f"gs://{input_bucket_name}/{demo_dataset}/txt"
 
@@ -155,6 +154,7 @@ def convert_jpgs(main_project_id,
     log_file = tf.io.gfile.GFile(log_file_path, "w")
 
     for blob in bucket.list_blobs(prefix=folder_to_enumerate):
+        logger.info(blob.name)
         if (blob.name.endswith(".jpg")):
             logger.info("Converting jpg: {}".format(blob.name))
             current_blob = storage_client.get_bucket(
