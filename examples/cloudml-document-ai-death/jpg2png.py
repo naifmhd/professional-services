@@ -152,9 +152,14 @@ def convert_jpgs(main_project_id,
 
     log_file_path = os.path.join(png_output_folder, "corrupted_files.txt")
     log_file = tf.io.gfile.GFile(log_file_path, "w")
-    logger.info(bucket.list_blobs(prefix=folder_to_enumerate))
-    for blob in bucket.list_blobs(prefix=folder_to_enumerate):
-        logger.info(blob)
+
+    # storage_client = storage.Client.from_service_account_json(service_acct)
+    # blobs = storage_client.list_blobs(prefix=folder_to_enumerate)
+
+    logger.info(folder_to_enumerate)
+    logger.info(storage_client.list_blobs(prefix=folder_to_enumerate))
+    for blob in storage_client.list_blobs(prefix=folder_to_enumerate):
+        logger.info(blob.name)
         if (blob.name.endswith(".jpg")):
             logger.info("Converting jpg: {}".format(blob.name))
             current_blob = storage_client.get_bucket(
