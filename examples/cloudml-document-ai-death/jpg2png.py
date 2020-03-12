@@ -147,7 +147,7 @@ def convert_jpgs(main_project_id,
 
     folder_to_enumerate = input_path.replace(
         input_bucket_name + "/", "").replace("gs://", "")
-
+    logger.info(folder_to_enumerate)
     png_output_folder = f"gs://{input_bucket_name}/{demo_dataset}/png"
     txt_output_folder = f"gs://{input_bucket_name}/{demo_dataset}/txt"
 
