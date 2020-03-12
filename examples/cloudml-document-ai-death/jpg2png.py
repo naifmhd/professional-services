@@ -156,25 +156,24 @@ def convert_jpgs(main_project_id,
     # storage_client = storage.Client.from_service_account_json(service_acct)
     # blobs = storage_client.list_blobs(folder_to_enumerate, prefix='/')
 
-    logger.info(folder_to_enumerate)
-    logger.info(storage_client.list_blobs(folder_to_enumerate))
+    logger.info(folder_to_enumerate))
     for blob in storage_client.list_blobs(folder_to_enumerate):
-        logger.info(blob)
+        logger.info(blob.name)
         if (blob.name.endswith(".jpg")):
             logger.info("Converting jpg: {}".format(blob.name))
-            current_blob = storage_client.get_bucket(
+            current_blob=storage_client.get_bucket(
                 input_bucket_name).get_blob(blob.name)
-            png_path = os.path.join(
+            png_path=os.path.join(
                 png_output_folder,
                 os.path.basename(blob.name).replace(".jpg", ".png"))
-            txt_path = os.path.join(
+            txt_path=os.path.join(
                 txt_output_folder,
                 os.path.basename(blob.name).replace(".jpg", ".txt"))
             logger.info("Writing png at: {}".format(png_path))
-            jpg2png2txt(current_blob=current_blob,
-                        png_path=png_path,
-                        txt_path=txt_path,
-                        storage_client=storage_client,
-                        service_acct=service_acct,
-                        log_file=log_file)
+            jpg2png2txt(current_blob = current_blob,
+                        png_path = png_path,
+                        txt_path = txt_path,
+                        storage_client = storage_client,
+                        service_acct = service_acct,
+                        log_file = log_file)
     log_file.close()
