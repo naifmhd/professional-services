@@ -154,12 +154,12 @@ def convert_jpgs(main_project_id,
     log_file = tf.io.gfile.GFile(log_file_path, "w")
 
     # storage_client = storage.Client.from_service_account_json(service_acct)
-    # blobs = storage_client.list_blobs(prefix=folder_to_enumerate)
+    # blobs = storage_client.list_blobs(folder_to_enumerate, prefix='/')
 
     logger.info(folder_to_enumerate)
-    logger.info(storage_client.list_blobs(prefix=folder_to_enumerate))
-    for blob in storage_client.list_blobs(prefix=folder_to_enumerate):
-        logger.info(blob.name)
+    logger.info(storage_client.list_blobs(folder_to_enumerate))
+    for blob in storage_client.list_blobs(folder_to_enumerate):
+        logger.info(blob)
         if (blob.name.endswith(".jpg")):
             logger.info("Converting jpg: {}".format(blob.name))
             current_blob = storage_client.get_bucket(
